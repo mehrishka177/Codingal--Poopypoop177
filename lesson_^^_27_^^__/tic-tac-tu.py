@@ -43,24 +43,25 @@ def pick():
                 if guess==number:
                     break
         
-        if guess>100 of guess<1
-        print("yall is stupid as allways")
+            if guess>100 or guess<1:
+                print("yall is stupid as allways")
         
-        time.sleep(.25)
-        print("more than 1 or 100 yaaalll")
+                time.sleep(.25)
+                print("more than 1 or 100 yaaalll")
         except:
             print("i dont think enter is an number bro")
             
-            if guess == number:
+    if guess == number:
                 guessesTaken = str(guessesTaken)
                 print("you are finally correct".format(name, guessesTaken))
             
-            if guess != number:
+    if guess != number:
                 print("nuuuuuuuuhuhuhuhuhuhuhuhuhuh")
-                
-        playagain="yessss"
-        while playagain=="yessss" or playagain=="yeah"
-        intro()
-        pick()
-        print("wonna die")
-        playagain=input()
+    playagain="yessss"   
+while playagain=="yessss" or playagain=="yeah"
+intro()
+pick()
+    print("wonna die")
+playagain=input()
+        
+    
