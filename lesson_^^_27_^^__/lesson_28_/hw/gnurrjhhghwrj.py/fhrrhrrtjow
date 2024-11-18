@@ -1,0 +1,2 @@
+sh = input("enter a character")
+print("is this a alphavet ", sh.isalpha())
