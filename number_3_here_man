@@ -1,0 +1,137 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOiamFKeTLIFzG47B+nfiYU",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/mehrishka177/Codingal--Poopypoop177/blob/main/number_3_here_man\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "nA9ESif_XzIU"
+      },
+      "outputs": [],
+      "source": [
+        "import sqlite3\n",
+        "\n",
+        "# Create a connection to an in-memory database\n",
+        "conn = sqlite3.connect(\":memory:\")\n",
+        "cursor = conn.cursor()\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "cursor.execute(\"\"\"\n",
+        "CREATE TABLE Matches (\n",
+        "    Match_ID INTEGER PRIMARY KEY,\n",
+        "    Date TEXT,\n",
+        "    Opponent TEXT,\n",
+        "    Venue TEXT,\n",
+        "    Result TEXT,\n",
+        "    Runs_Scored INTEGER,\n",
+        "    Wickets_Taken INTEGER\n",
+        ");\n",
+        "\"\"\")\n",
+        "conn.commit()\n"
+      ],
+      "metadata": {
+        "id": "ch2Rv86WX1Bs"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "cursor.executemany(\"\"\"\n",
+        "INSERT INTO Matches (Match_ID, Date, Opponent, Venue, Result, Runs_Scored, Wickets_Taken)\n",
+        "VALUES (?, ?, ?, ?, ?, ?, ?)\n",
+        "\"\"\", [\n",
+        "    (1, \"2024-01-10\", \"Warriors\", \"Home\", \"Win\", 250, 8),\n",
+        "    (2, \"2024-01-15\", \"Titans\", \"Away\", \"Loss\", 180, 6),\n",
+        "    (3, \"2024-01-20\", \"Strikers\", \"Neutral\", \"Win\", 220, 9),\n",
+        "    (4, \"2024-01-25\", \"Gladiators\", \"Home\", \"Loss\", 200, 7)\n",
+        "])\n",
+        "conn.commit()\n"
+      ],
+      "metadata": {
+        "id": "LaRgVLvWX3M1"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "cursor.execute(\"SELECT * FROM Matches\")\n",
+        "for row in cursor.fetchall():\n",
+        "    print(row)\n"
+      ],
+      "metadata": {
+        "id": "0199dNV8X5bw"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "cursor.execute(\"SELECT COUNT(*) FROM Matches\")\n",
+        "print(\"Total Matches:\", cursor.fetchone()[0])\n"
+      ],
+      "metadata": {
+        "id": "V1vyTBRnX7qA"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "cursor.execute(\"SELECT AVG(Runs_Scored) FROM Matches\")\n",
+        "print(\"Average Runs Scored:\", cursor.fetchone()[0])\n"
+      ],
+      "metadata": {
+        "id": "6bwO6PvXX9qh"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "cursor.execute(\"SELECT * FROM Matches WHERE Result = 'Win'\")\n",
+        "for row in cursor.fetchall():\n",
+        "    print(row)\n"
+      ],
+      "metadata": {
+        "id": "woVd1STkYAJz"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
